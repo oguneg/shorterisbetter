@@ -104,3 +104,11 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+#FMOD metadata
+/FMODProject/shorterisbetter/.cache/
+/FMODProject/shorterisbetter/.user/
+/FMODProject/shorterisbetter/.fsbank/
+/FMODProject/shorterisbetter/**/*.user
+/FMODProject/shorterisbetter/**/*.user.*
+/FMODProject/shorterisbetter/Build/
