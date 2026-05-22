@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f10ddcf5-c486-4c99-92f7-7efb1d2973b1}">
+		<property name="assetPath">
+			<value>Piano Chords.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>61.009614512471657</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0abb77ce-b257-4a8e-99f0-96512efd858c}</destination>
+		</relationship>
+	</object>
+</objects>

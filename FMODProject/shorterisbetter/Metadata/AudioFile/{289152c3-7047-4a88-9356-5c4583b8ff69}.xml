@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{289152c3-7047-4a88-9356-5c4583b8ff69}">
+		<property name="assetPath">
+			<value>Piano Solo.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>61.6634693877551</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0abb77ce-b257-4a8e-99f0-96512efd858c}</destination>
+		</relationship>
+	</object>
+</objects>
