@@ -596,7 +596,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2020,7 +2020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1512964946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3415,7 +3415,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 330585546}
-  - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 2135348544978035514}
   - {fileID: 1766672160}
@@ -3424,5 +3423,6 @@ SceneRoots:
   - {fileID: 1004319937}
   - {fileID: 1473973327}
   - {fileID: 898265416}
+  - {fileID: 410087041}
   - {fileID: 1512964948}
   - {fileID: 610004651}
