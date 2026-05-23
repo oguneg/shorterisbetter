@@ -11,21 +11,22 @@ public class AudioChannelManager : MonoSingleton<AudioChannelManager>
     [SerializeField] private string parameter3Name = "Drums";
     [SerializeField] private string parameter4Name = "Drums";
     [SerializeField] private string parameter5Name = "Drums";
-    
-    [SerializeField][Range(0,1)] private float parameter1Value; 
-    [SerializeField][Range(0,1)] private float parameter2Value; 
-    [SerializeField][Range(0,1)] private float parameter3Value; 
-    [SerializeField][Range(0,1)] private float parameter4Value; 
-    [SerializeField][Range(0,1)] private float parameter5Value; 
+
+    [SerializeField][Range(0,1)] private float[] parameterValues;
     
     private EventInstance eventInstance;
-    
     void Start()
     {
         if (eventEmitter != null)
         {
             eventInstance = eventEmitter.EventInstance;
         }
+        
+    }
+
+    public void SetParameterValue(int parameterIndex, float val)
+    {
+        parameterValues[parameterIndex] = val;
     }
     
     void Update()
@@ -39,11 +40,11 @@ public class AudioChannelManager : MonoSingleton<AudioChannelManager>
             return;
         
         // Set the FMOD parameter
-        eventInstance.setParameterByName(parameter1Name, parameter1Value);
-        eventInstance.setParameterByName(parameter2Name, parameter2Value);
-        eventInstance.setParameterByName(parameter3Name, parameter3Value);
-        eventInstance.setParameterByName(parameter4Name, parameter4Value);
-        eventInstance.setParameterByName(parameter5Name, parameter5Value);
+        eventInstance.setParameterByName(parameter1Name, parameterValues[0]);
+        eventInstance.setParameterByName(parameter2Name, parameterValues[1]);
+        eventInstance.setParameterByName(parameter3Name, parameterValues[2]);
+        eventInstance.setParameterByName(parameter4Name, parameterValues[3]);
+        eventInstance.setParameterByName(parameter5Name, parameterValues[4]);
     }
     
     void OnDestroy()
