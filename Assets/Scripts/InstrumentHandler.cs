@@ -17,6 +17,7 @@ public class InstrumentHandler : MonoBehaviour, IInteractable
         assignedLight.enabled = status;
         assignedLight.DOIntensity(status ? _lightStartingIntensity : 0f, 1f).SetEase(Ease.InOutSine);
         AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.7f : 0);
+        SetInteractableStatus(false);
     }
     
     public void ToggleStatus()
@@ -35,6 +36,11 @@ public class InstrumentHandler : MonoBehaviour, IInteractable
         }
     }
 
+    public void SetInteractableStatus(bool isInteractable)
+    {
+        gameObject.layer = isInteractable ? 6 : 0;
+    }
+    
     public void Interact()
     {
         ToggleStatus();

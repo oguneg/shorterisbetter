@@ -23,7 +23,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.isInputEnabled || DialoguePanel.IsDialogueActive) return;
+        if (!GameManager.isInputEnabled || DialoguePanel.IsDialogueActive)
+        {
+            inputVector = Vector3.zero;
+            SetRunningState(false);
+            return;
+        }
         
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
