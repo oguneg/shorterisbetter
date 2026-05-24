@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -20,6 +21,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private Image blackoutImage;
     [SerializeField] private GhostHandler ghostPrefab;
 
+    [SerializeField] private CanvasGroup endingScreen;
+    [SerializeField] private TextMeshProUGUI endingText1, endingText2;
     private Coroutine ghostRoutine;
     private bool isGameStarted = false;
     
@@ -116,6 +119,14 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    private void ShowEndingScreen()
+    {
+        endingScreen.DOFade(1, 0.5f);
+        endingText1.DOFade(1, 0.5f).SetDelay(2f);
+        endingText2.DOFade(1, 0.5f).SetDelay(4f);
+        endingScreen.DOFade(0, 0.5f).SetDelay(8f);
+    }
+
     public void CheckForCompletion()
     {
         if (!isGameStarted) return;
@@ -125,14 +136,29 @@ public class GameManager : MonoSingleton<GameManager>
             if (element.Status) return;
         }
         StopCoroutine(ghostRoutine);
+        var ghosts = FindObjectsOfType<GhostHandler>();
+        foreach (var ghost in ghosts)
+        {
+            Destroy(ghost.gameObject);
+        }
+
         CompleteGame();
     }
 
     private void CompleteGame()
     {
-        Debug.Log("Bravo");
+        isGameStarted = false;
+        StartCoroutine(EndingRoutine());
+    }
+
+    private IEnumerator EndingRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
         dialogueManager.TriggerDialogueBatch(5);
-        DOVirtual.DelayedCall(3, TurnOnAllInstruments);
+        yield return new WaitWhile(()=>DialoguePanel.IsDialogueActive);
+        yield return new WaitForSeconds(0.5f);
+        TurnOnAllInstruments();
+        ShowEndingScreen();        
     }
 
     private void TurnOnAllInstruments()

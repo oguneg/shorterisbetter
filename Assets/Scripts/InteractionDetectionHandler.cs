@@ -11,6 +11,13 @@ public class InteractionDetectionHandler : MonoBehaviour
     
     private void Update()
     {
+        if (DialoguePanel.IsDialogueActive)
+        {
+            interactionUI.gameObject.SetActive(false);
+            isInteractionPossible = false;
+            return;
+        }
+        
         var ray = new Ray(transform.position + Vector3.up , transform.forward);
         RaycastHit hit;
         var cast = Physics.SphereCastAll(ray, 0.4f, 0.3f, 64);
