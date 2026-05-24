@@ -13,11 +13,11 @@ public class DialogueManager : MonoSingleton<DialogueManager>
         {
             _isWaitingForInput = false;
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            StartCoroutine(DialogueRoutine(dialogueBatches[0]));
-        }
+    public void TriggerDialogueBatch(int index)
+    {
+        StartCoroutine(DialogueRoutine(dialogueBatches[index]));
     }
     
     private IEnumerator DialogueRoutine(DialogueBatch batch)

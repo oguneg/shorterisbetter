@@ -25,6 +25,14 @@ public class InstrumentHandler : MonoBehaviour, IInteractable
         assignedLight.enabled = status;
         assignedLight.DOIntensity(status ? _lightStartingIntensity : 0f, 1f).SetEase(Ease.InOutSine);
         AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.7f : 0);
+        if (parameterIndex == 3)
+        {
+            GameManager.isWaitingForBoomboxInteraction = false;
+        }
+        if (parameterIndex == 0)
+        {
+            GameManager.isWaitingForBassInteraction = false;
+        }
     }
 
     public void Interact()

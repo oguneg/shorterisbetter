@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.isInputEnabled || DialoguePanel.IsDialogueActive) return;
+        
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 

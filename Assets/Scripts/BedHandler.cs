@@ -9,7 +9,7 @@ public class BedHandler : MonoBehaviour, IInteractable
     
     public void ToggleStatus()
     {
-        
+        GameManager.isWaitingForBedInteraction = false;
     }
 
     public void Interact()

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class DialoguePanel : MonoBehaviour
 {
+    public static bool IsDialogueActive;
     [SerializeField] private TextMeshProUGUI textField;
     [SerializeField] private Image panelBG;
     public bool IsAnimatingText { get; private set; } = false;
@@ -16,10 +17,13 @@ public class DialoguePanel : MonoBehaviour
         textField.text = String.Empty;
         panelBG.gameObject.SetActive(true);
         panelBG.transform.DOScale(1, 0.3f).SetEase(Ease.OutBack);
+        IsDialogueActive = true;
     }
 
     public void HidePanel()
     {
+        IsDialogueActive = false;
+        
         panelBG.transform.DOScale(0, 0.3f).SetEase(Ease.InBack)
             .OnComplete(() => panelBG.gameObject.SetActive(false));
     }
