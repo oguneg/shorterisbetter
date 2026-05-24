@@ -18,7 +18,7 @@ public class InstrumentHandler : MonoBehaviour, IInteractable
         
         assignedLight.enabled = status;
         assignedLight.DOIntensity(status ? _lightStartingIntensity : 0f, 1f).SetEase(Ease.InOutSine);
-        AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.6f : 0);
+        AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.63f : 0);
         SetInteractableStatus(false);
     }
 
@@ -37,7 +37,7 @@ public class InstrumentHandler : MonoBehaviour, IInteractable
         assignedLight.enabled = status;
         assignedLight.DOIntensity(status ? _lightStartingIntensity : 0f, 1f).SetEase(Ease.InOutSine);
         
-        AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.6f : 0);
+        AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.63f : 0);
         if (parameterIndex == 3)
         {
             GameManager.isWaitingForBoomboxInteraction = false;
