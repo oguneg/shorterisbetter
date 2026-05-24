@@ -1842,6 +1842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 610004651}
   - component: {fileID: 610004650}
+  - component: {fileID: 610004652}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1865,7 +1866,8 @@ MonoBehaviour:
   - messages:
     - What a day, huh!
     - I need a good shower before sleep, but apparently my flat doesn't have one.
-      Lazy dev.
+    - No bathroom, no kitchen, what a lazy dev.
+    - The only thing I need is my music and some sleep anyway.
     - Time to get some sleepy sleep then.
   dialoguePanel: {fileID: 681102919}
 --- !u!4 &610004651
@@ -1883,6 +1885,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &610004652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610004649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53104c80e4a1e344c9cf190b81478ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &681102915
 GameObject:
   m_ObjectHideFlags: 0
@@ -5447,6 +5461,8 @@ GameObject:
   - component: {fileID: 7491156906360356555}
   - component: {fileID: 731184822007718936}
   - component: {fileID: 6845801318283585036}
+  - component: {fileID: 7491156906360356557}
+  - component: {fileID: 7491156906360356556}
   m_Layer: 6
   m_Name: Bed
   m_TagString: Untagged
@@ -5681,6 +5697,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2135348544978035514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &7491156906360356556
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479137906593980049}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6508942946276188115, guid: 52c7785338898884aa9cc4ea6d898a8e, type: 3}
+--- !u!114 &7491156906360356557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479137906593980049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c524ebf20ab19c43a067e34e48452b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignedLight: {fileID: 0}
+  parameterIndex: 0
+  status: 0
 --- !u!33 &7586536754003248776
 MeshFilter:
   m_ObjectHideFlags: 0

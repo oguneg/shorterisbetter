@@ -6,7 +6,7 @@ public class InteractionDetectionHandler : MonoBehaviour
     [SerializeField] private GameObject interactionUI;
     [SerializeField] private Camera mainCam;
 
-    private InstrumentHandler instrument;
+    private IInteractable interactable;
     private bool isInteractionPossible;
     
     private void Update()
@@ -17,19 +17,19 @@ public class InteractionDetectionHandler : MonoBehaviour
 
         foreach (var element in cast)
         {
-            var instrument = element.transform.gameObject.GetComponent<InstrumentHandler>();
+            var instrument = element.transform.gameObject.GetComponent<IInteractable>();
             if (instrument != null)
             {
                 interactionUI.gameObject.SetActive(true);
                 var pos = mainCam.WorldToScreenPoint(instrument.transform.position);
                 interactionUI.transform.position = pos;
-                this.instrument = instrument;
+                interactable = instrument;
                 isInteractionPossible = true;
             }
         }
         if(cast.Length == 0)
         {
-            instrument = null;
+            interactable = null;
             if (isInteractionPossible)
             { 
                 interactionUI.gameObject.SetActive(false);
@@ -39,7 +39,7 @@ public class InteractionDetectionHandler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && isInteractionPossible)
         {
-            instrument.ToggleStatus();
+            interactable?.Interact();
         }
     }
 }
