@@ -15,6 +15,7 @@ public class GhostHandler : MonoBehaviour
         transform.position = location.position;
         
         var seq = DOTween.Sequence();
+        seq.SetTarget(this);
         seq.Append(ghostTransform.DOScale(100f, 0.25f).SetEase(Ease.OutBack));
         seq.Append(transform.DOMove(location.position + location.forward * 2f, 1f).SetEase(Ease.InOutSine));
         seq.AppendInterval(0.3f);

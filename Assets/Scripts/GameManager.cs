@@ -25,7 +25,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private TextMeshProUGUI endingText1, endingText2;
     private Coroutine ghostRoutine;
     private bool isGameStarted = false;
-    
+    private float punchInterval = 1.08333333f;
+    private float lastPunchTime = 0f;
     
     private void Start()
     {
@@ -33,7 +34,18 @@ public class GameManager : MonoSingleton<GameManager>
         StartCoroutine(GameRoutine());
         //ghostRoutine = StartCoroutine(GhostRoutine());
     }
-    
+
+    private void Update()
+    {
+        if (Time.time > lastPunchTime + punchInterval)
+        {
+            lastPunchTime = Time.time;
+            foreach (var element in instruments)
+            {
+                element.Punch();
+            }
+        }
+    }
 
     private InstrumentHandler GetDisabledInstrument()
     {
@@ -107,11 +119,11 @@ public class GameManager : MonoSingleton<GameManager>
     {
         isGameStarted = true;
         SetAllInstrumentsInteractable();
-        float spawnDelay = 1f;
+        float spawnDelay = 0.75f;
         while (true)
         {
             yield return new WaitForSeconds(spawnDelay + Random.Range(0.3f, 1f));
-            spawnDelay += 0.2f;
+            spawnDelay += 0.15f;
             var instrument = GetDisabledInstrument();
             if (instrument == null) continue;
             var ghost = Instantiate(ghostPrefab, transform);
@@ -139,9 +151,9 @@ public class GameManager : MonoSingleton<GameManager>
         var ghosts = FindObjectsOfType<GhostHandler>();
         foreach (var ghost in ghosts)
         {
+            DOTween.Kill(ghost);
             Destroy(ghost.gameObject);
         }
-
         CompleteGame();
     }
 

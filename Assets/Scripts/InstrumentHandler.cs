@@ -9,7 +9,6 @@ public class InstrumentHandler : MonoBehaviour, IInteractable
     [SerializeField] private bool status;
     public Transform ghostSpawnPoint;
     
-    
     public bool Status => status;
     private float _lightStartingIntensity;
 
@@ -19,16 +18,26 @@ public class InstrumentHandler : MonoBehaviour, IInteractable
         
         assignedLight.enabled = status;
         assignedLight.DOIntensity(status ? _lightStartingIntensity : 0f, 1f).SetEase(Ease.InOutSine);
-        AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.7f : 0);
+        AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.6f : 0);
         SetInteractableStatus(false);
     }
+
+    public void Punch()
+    {
+        if (status)
+        {
+            transform.DOPunchScale(transform.localScale * 0.08f, 0.15f, 40, 3);
+        }
+    }
     
+
     public void ToggleStatus()
     {
         status = !status;
         assignedLight.enabled = status;
         assignedLight.DOIntensity(status ? _lightStartingIntensity : 0f, 1f).SetEase(Ease.InOutSine);
-        AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.7f : 0);
+        
+        AudioChannelManager.instance.SetParameterValue(parameterIndex, status ? 0.6f : 0);
         if (parameterIndex == 3)
         {
             GameManager.isWaitingForBoomboxInteraction = false;

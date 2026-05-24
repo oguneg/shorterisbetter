@@ -1612,7 +1612,7 @@ MonoBehaviour:
     - I need a good shower before sleep, but apparently my flat doesn't have one.
     - No bathroom, no kitchen, what a lazy dev.
     - The only thing I need is my music and some sleep anyway.
-    - Time to get some sleepy sleep then.
+    - Time to get some sleepy sleep then. Bed awaits!
   - messages:
     - What's that now? Idiot neighbors!
     - Better get up and check it out.
@@ -1623,13 +1623,14 @@ MonoBehaviour:
   - messages:
     - Wait... Who's playing the bass? Now that's weird.
   - messages:
-    - Ghosts.. of musicians who lived and died here?
+    - Ghosts... of musicians who lived and died here?
     - I thought it was just a silly rumor.
     - Gotta silence `em all!
   - messages:
     - I won.. but at what cost?
-    - I think there's no point of fighting anymore, and accept the truth.
-    - I am one of the musicians who lived and died here now.
+    - I think there's no point of fighting anymore, and make peace with the truth.
+    - It's hard to accept, that I am one of the musicians who lived and died here
+      now.
   dialoguePanel: {fileID: 681102919}
 --- !u!4 &610004651
 Transform:
@@ -1795,9 +1796,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2103554636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -286}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 70}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700974674
@@ -3252,7 +3253,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1024, y: 768}
+  m_ReferenceResolution: {x: 960, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -8495,6 +8496,115 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594587483}
   m_Mesh: {fileID: -6692290496178104961, guid: 52c7785338898884aa9cc4ea6d898a8e, type: 3}
+--- !u!1 &1636595066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1636595070}
+  - component: {fileID: 1636595069}
+  - component: {fileID: 1636595068}
+  - component: {fileID: 1636595067}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &1636595067
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636595066}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1636595068
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636595066}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 56fb07419d7837d478bb001fc3496932, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1636595069
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636595066}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1636595070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636595066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.4948858, y: 0.62854326, z: -0.071330845, w: 0.5957629}
+  m_LocalPosition: {x: -15.9, y: -11.3, z: -11.3}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 42.792, y: 112.427, z: 47.05}
 --- !u!1 &1751883342
 GameObject:
   m_ObjectHideFlags: 0
@@ -10463,7 +10573,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 118
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!33 &5220731809308366407
 MeshFilter:
@@ -10852,7 +10962,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 118
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!33 &7190146986497110449
 MeshFilter:
@@ -11405,3 +11515,4 @@ SceneRoots:
   - {fileID: 257063749}
   - {fileID: 610004651}
   - {fileID: 151548439}
+  - {fileID: 1636595070}
