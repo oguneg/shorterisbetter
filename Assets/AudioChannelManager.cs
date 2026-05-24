@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
@@ -26,7 +27,9 @@ public class AudioChannelManager : MonoSingleton<AudioChannelManager>
 
     public void SetParameterValue(int parameterIndex, float val)
     {
-        parameterValues[parameterIndex] = val;
+        DOTween.To(()=>parameterValues[parameterIndex], x => parameterValues[parameterIndex] = x, val, 1).SetSpeedBased().SetEase(Ease.InOutSine);
+        
+        //parameterValues[parameterIndex] = val;
     }
     
     void Update()

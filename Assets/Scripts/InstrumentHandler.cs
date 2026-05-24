@@ -7,7 +7,10 @@ public class InstrumentHandler : MonoBehaviour, IInteractable
     [SerializeField] private Light assignedLight;
     [SerializeField] private int parameterIndex;
     [SerializeField] private bool status;
-
+    public Transform ghostSpawnPoint;
+    
+    
+    public bool Status => status;
     private float _lightStartingIntensity;
 
     private void Awake()

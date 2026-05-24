@@ -40,6 +40,7 @@ public class InteractionDetectionHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && isInteractionPossible)
         {
             interactable?.Interact();
+            GameManager.instance.CheckForCompletion();
         }
     }
 }

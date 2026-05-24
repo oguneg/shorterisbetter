@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -18,15 +18,43 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private List<InstrumentHandler> instruments;
     [SerializeField] private DialogueManager dialogueManager;
     [SerializeField] private Image blackoutImage;
+    [SerializeField] private GhostHandler ghostPrefab;
+
+    private Coroutine ghostRoutine;
+    private bool isGameStarted = false;
+    
+    
     private void Start()
     {
+        isInputEnabled = true;
         StartCoroutine(GameRoutine());
+        //ghostRoutine = StartCoroutine(GhostRoutine());
     }
+    
 
+    private InstrumentHandler GetDisabledInstrument()
+    {
+        List<InstrumentHandler> disabledInstruments = new List<InstrumentHandler>();
+        foreach (var instrument in instruments)
+        {
+            if (instrument.Status == false)
+            {
+                disabledInstruments.Add(instrument);
+            }
+        }
+
+        if (disabledInstruments.Count == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return disabledInstruments[Random.Range(0, disabledInstruments.Count)];
+        }
+    }
 
     IEnumerator GameRoutine()
     {
-        isInputEnabled = true;
         yield return new WaitForSeconds(1);
         dialogueManager.TriggerDialogueBatch(0);
         isWaitingForBedInteraction = true;
@@ -66,10 +94,64 @@ public class GameManager : MonoSingleton<GameManager>
         instruments[2].SetInteractableStatus(true);
         instruments[3].SetInteractableStatus(true);
         instruments[4].SetInteractableStatus(true);
-        
+        dialogueManager.TriggerDialogueBatch(4);
         yield return null;
+        
+        ghostRoutine = StartCoroutine(GhostRoutine());
     }
 
+    IEnumerator GhostRoutine()
+    {
+        isGameStarted = true;
+        SetAllInstrumentsInteractable();
+        float spawnDelay = 1f;
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnDelay + Random.Range(0.3f, 1f));
+            spawnDelay += 0.2f;
+            var instrument = GetDisabledInstrument();
+            if (instrument == null) continue;
+            var ghost = Instantiate(ghostPrefab, transform);
+            ghost.Appear(instrument.ghostSpawnPoint, instrument);
+        }
+    }
+
+    public void CheckForCompletion()
+    {
+        if (!isGameStarted) return;
+        bool result = false;
+        foreach (var element in instruments)
+        {
+            if (element.Status) return;
+        }
+        StopCoroutine(ghostRoutine);
+        CompleteGame();
+    }
+
+    private void CompleteGame()
+    {
+        Debug.Log("Bravo");
+        dialogueManager.TriggerDialogueBatch(5);
+        DOVirtual.DelayedCall(3, TurnOnAllInstruments);
+    }
+
+    private void TurnOnAllInstruments()
+    {
+        foreach (var element in instruments)
+        {
+            if(!element.Status) element.Interact();
+        }
+    }
+
+    private void SetAllInstrumentsInteractable()
+    {
+        foreach (var element in instruments)
+        {
+            element.SetInteractableStatus(true);
+        }
+    }
+    
+    
     public void SetInputStatus(bool isEnabled)
     {
         isInputEnabled = isEnabled;

@@ -5,22 +5,26 @@ using UnityEngine.Serialization;
 
 public class GhostHandler : MonoBehaviour
 {
-    [SerializeField] private Transform startPosition;
-    [FormerlySerializedAs("endposition")] [SerializeField] private Transform endPosition;
-    private void Start()
+    [SerializeField] private ParticleSystem cloudParticle;
+    [SerializeField] private Transform ghostTransform;
+    [SerializeField] private Light ghostLight1, ghostLight2;
+    public void Appear(Transform location, IInteractable interactable)
     {
-        //transform.DOLocalMoveY(0.1f, 1f).SetRelative().SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
-        transform.position = startPosition.position;
-        transform.LookAt(endPosition.position);
+        cloudParticle.Play();
+        transform.localEulerAngles = location.localEulerAngles;
+        transform.position = location.position;
         
         var seq = DOTween.Sequence();
+        seq.Append(ghostTransform.DOScale(100f, 0.25f).SetEase(Ease.OutBack));
+        seq.Append(transform.DOMove(location.position + location.forward * 2f, 1f).SetEase(Ease.InOutSine));
+        seq.AppendInterval(0.3f);
+        seq.AppendCallback(interactable.Interact);
+        seq.AppendInterval(0.2f);
+        seq.AppendCallback(cloudParticle.Play);
+        seq.Append(ghostTransform.DOScale(0f, 0.2f).SetEase(Ease.InBack));
         seq.AppendInterval(0.5f);
-        seq.Append(transform.DOMove(endPosition.position, 2f));
-        seq.Join(transform.DOLookAt(endPosition.position, 0.3f));
-        seq.AppendInterval(0.5f);
-        seq.Append(transform.DOMove(startPosition.position, 2f));
-        seq.Join(transform.DOLookAt(startPosition.position, 0.3f));
-        seq.SetLoops(-1, LoopType.Restart);
-        seq.Play();
+        seq.Append(ghostLight1.DOIntensity(0, 0.3f));
+        seq.Join(ghostLight2.DOIntensity(0, 0.3f));
+        seq.AppendCallback(()=> gameObject.SetActive(false));
     }
 }
