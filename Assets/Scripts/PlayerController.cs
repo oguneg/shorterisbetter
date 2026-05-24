@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsRunningHash = Animator.StringToHash("IsRunning");
     private bool isRunning = false;
 
+    [SerializeField] private ParticleSystem walkParticle;
+    [SerializeField] private float walkParticleInterval = 0.2f;
+    private float _lastWalkParticleEmitTime = 0;
+    
     private Vector3 inputVector;
 
     private void Awake()
@@ -38,10 +42,20 @@ public class PlayerController : MonoBehaviour
         if (inputVector.magnitude > 0.1f)
         {
             SetRunningState(true);
+            FireWalkParticle();
         }
         else
         {
             SetRunningState(false);
+        }
+    }
+
+    private void FireWalkParticle()
+    {
+        if (_lastWalkParticleEmitTime + walkParticleInterval < Time.time)
+        {
+            _lastWalkParticleEmitTime = Time.time;
+            walkParticle.Play();
         }
     }
 
